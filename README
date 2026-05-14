@@ -1,1 +1,4 @@
 CLAUDE DIKE
+curl -s https://openrouter.ai/api/v1/models \
+  -H "Authorization: Bearer $(grep OPENROUTER_KEY .env | cut -d= -f2)" \
+  | node -e "const d=require('fs').readFileSync('/dev/stdin','utf8'); const m=JSON.parse(d).data.filter(x=>x.id.includes(':free')); m.forEach(x=>console.log(x.id))"
